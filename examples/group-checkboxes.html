@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<script src="jquery.min.js"></script>
+	<script src="../jquery.chckboxGrp.js"></script>
+
+	<script>
+
+		var addAction = function(txt){
+			$('#actions').append($('<div>' + txt + '</div>'));
+			$('#actions').scrollTop($('#actions')[0].scrollHeight)
+
+		};
+
+		$(document).ready(function(){
+			$('#clear').on('click', function(){
+				$('#actions *').remove()
+			})
+
+			$('#grayout').on('click', function(){
+				$('#actions *').css('color', '#ddd')
+			})
+
+
+			$('input').on('click', function(){
+				addAction('click: ' + $(this).attr('name'))
+			});
+
+			$('input').on('change', function(){
+				addAction('change: ' + $(this).attr('name'))
+			});
+
+			$('input.group2').on('change', function(){
+				addAction('change(second): ' + $(this).attr('name'))
+			});
+
+			$('.group1').checkboxGrp();
+			$('.group2').checkboxGrp({changeMethod:'click'});
+		});
+	</script>
+
+	<body>
+		<form>
+
+			<fieldset>
+				<legend>group1</legend>
+				<input type="checkbox" class="group1" name="g1-1"/>
+				<input type="checkbox" class="group1" name="g1-2"/>
+				<input type="checkbox" class="group1" name="g1-3"/>
+				<input type="checkbox" class="group1" name="g1-4"/>
+			</fieldset>
+
+			<fieldset>
+				<legend>group2</legend>
+				<input type="checkbox" class="group2" name="g2-1"/>
+				<input type="checkbox" class="group2" name="g2-2"/>
+				<input type="checkbox" class="group2" name="g2-3"/>
+				<input type="checkbox" class="group2" name="g2-4"/>
+			</fieldset>
+
+		</form>
+		<br /><br /><br />
+		<b id="clear">clear</b> <b id="grayout">grayout</b>
+		<div id="actions" style = "height:300px; overflow: auto; font-family:monospace;"></div>
+
+	</body>
+</html>
+
