@@ -7,7 +7,7 @@ Group checkboxes to behave like radioboxes
 options
 -------
 
-**changeMethod** check|click
+**changeMethod** string Possible values are check|click. Defaults to "check"
 
 If option is set to check currently selected checkbox is simply checked/unchecked. If option is click then click event is fired. It has big impact on wchich events are fired.
 
